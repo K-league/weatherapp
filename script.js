@@ -11,6 +11,7 @@ function getWeather(q) {
         dataType: 'json',
         success: function(result){
             console.log(result);
+            $("#output").html(result.name + " temp:" +result.main.temp);
         }
     });  
 };
@@ -21,6 +22,9 @@ window.addEventListener("load", function(){
     console.log(form)
     form.addEventListener("submit", function(event){
         event.preventDefault()
+        var q = $("#cityinput").val();
+        getWeather(q)
+        
         console.log(event)
     });
 });
