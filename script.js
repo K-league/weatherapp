@@ -37,3 +37,15 @@ console.log('window finished loading, will fire event');
 //uv index if statement < || > returns color coded box to indicate favorable moderate or severe conditions
 //5 day forecast date, icon, temp and humidity
 //see recent search history
+function recordScore() {
+    var inputInitials = $("#initials").val();
+    var topScores = getTopScores();
+    topScores.push({initials: inputInitials, score: currentScore});
+    topScores = topScores.sort(function (item, other) {
+        return parseInt(other.score) - parseInt(item.score)        
+    });
+    topScores = topScores.slice(0, 5);
+    localStorage.topScores = JSON.stringify(topScores); //get this object and transform it into a string that looks like json
+    $("#scorePrompt").hide();
+    renderTopScores();
+}
